@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本当にありがとう</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Thẻ nội dung chính */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 28px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 460px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            z-index: 10;
+            animation: fadeIn 1.2s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Icon biểu cảm */
+        .icon-box {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: pulse 1.8s infinite;
+        }
+
+        /* Tiêu đề chữ viết tay */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #ff4757;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Nút tương tác */
+        .btn {
+            background: linear-gradient(45deg, #ff6b81, #ff4757);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 25px rgba(255, 71, 87, 0.5);
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Hiệu ứng bong bóng / trái tim bay */
+        .heart-particle {
+            position: absolute;
+            bottom: -20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Modal thông điệp bí mật */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 380px;
+            width: 85%;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-content h3 {
+            color: #ff4757;
+            margin-bottom: 12px;
+            font-size: 1.6rem;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: #f1f2f6;
+            color: #333;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Thẻ Cảm Ơn Chính -->
+    <div class="card">
+        <div class="icon-box">💖</div>
+        <h1>本当にありがとう</h1>
+        <p>
+          お時間を割いていただきありがとうございます。というのも、実際には誰もQRコードをスキャンする時間がないからです。🤣
+        </p>
+ <button class="btn" onclick="showSurprise(event)"> 
+ ここをクリック
+ </button>
+    </div>
+
+    <!-- Hộp thoại bất ngờ -->
+    <div class="modal" id="surpriseModal">
+        <div class="modal-content">
+            <h3>🎁心温まる贈り物
+            </h3>
+            <p>
+          お時間をいただき、ありがとうございます。🤣
+            </p>
+            <button class="close-btn" onclick="closeModal()">
+              近い
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng trái tim bay ngẫu nhiên ở nền
+        function createFloatingHearts() {
+            const hearts = ['💖', '🌸', '✨', '💕', '⭐'];
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        setInterval(createFloatingHearts, 400);
+
+        // Hiệu ứng khi bấm vào nút
+        function showSurprise(event) {
+            // Phun tim tại vị trí nút bấm
+            for(let i = 0; i < 20; i++) {
+                createExplosiveHeart(event.clientX, event.clientY);
+            }
+
+            // Hiện modal sau 300ms
+            setTimeout(() => {
+                document.getElementById('surpriseModal').style.display = 'flex';
+            }, 300);
+        }
+
+        function createExplosiveHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.innerText = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.transition = 'all 1s ease-out';
+            heart.style.zIndex = '999';
+
+            document.body.appendChild(heart);
+
+            const destinationX = x + (Math.random() - 0.5) * 300;
+            const destinationY = y + (Math.random() - 0.5) * 300;
+
+            setTimeout(() => {
+                heart.style.transform = `translate(${destinationX - x}px, ${destinationY - y}px) scale(0)`;
+                heart.style.opacity = '0';
+            }, 10);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        }
+
+        function closeModal() {
+            document.getElementById('surpriseModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
